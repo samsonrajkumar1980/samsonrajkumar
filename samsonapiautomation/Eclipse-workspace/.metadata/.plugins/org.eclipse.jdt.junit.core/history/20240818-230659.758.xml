@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="cucucmberRunner" project="projectmaven" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="runner.cucucmberRunner" time="0.221">
+    <testsuite name="Title of your feature" time="0.221">
+      <testcase name="create post test scenario" classname="Title of your feature" time="0.221">
+        <error>io.cucumber.junit.UndefinedStepException: The step 'creae post prerequest script' and 7 other step(s) are undefined.
+You can implement these steps using the snippet(s) below:
+
+@Given("creae post prerequest script")
+public void creae_post_prerequest_script() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@When("execute post api")
+public void execute_post_api() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("validate the {int} response code")
+public void validate_the_response_code(Integer int1) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("check more outcomes")
+public void check_more_outcomes() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("validate the response id is matching with expected result")
+public void validate_the_response_id_is_matching_with_expected_result() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("retrieve the ID values")
+public void retrieve_the_id_values() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("print the value id value using log4j2")
+public void print_the_value_id_value_using_log4j2() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("print the log response in report")
+public void print_the_log_response_in_report() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+&#13;
+&#13;
+</error>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

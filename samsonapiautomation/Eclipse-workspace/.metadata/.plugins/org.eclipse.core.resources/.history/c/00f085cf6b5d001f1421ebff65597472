@@ -1,0 +1,11 @@
+package payload;
+
+public class postrequest {
+	
+	public  String payload()
+	{
+		String postpayload = "{\"name\":\"morpheus\",\"job\":\"leader\"}";
+		return postpayload;
+	}
+
+}

@@ -1,0 +1,97 @@
+package stepDef;
+
+public class postAPI {
+	
+	package stepDef;
+
+	import io.cucumber.java.en.Given;
+	import io.cucumber.java.en.Then;
+	import io.cucumber.java.en.When;
+	import io.restassured.RestAssured;
+	import io.restassured.http.ContentType;
+	import io.restassured.response.Response;
+	import io.restassured.specification.RequestSpecification;
+	import org.apache.logging.log4j.LogManager;
+	import org.apache.logging.log4j.Logger;
+	import static org.hamcrest.Matchers.*;
+
+	public class postAPI {
+
+	    private static final Logger logger = LogManager.getLogger(postapi.class);
+	    private RequestSpecification request;
+	    private Response response;
+	    private String id;
+
+	    @Given("create post prerequest script")
+	    public void createPostPrerequestScript() {
+	        RestAssured.baseURI = "https://reqres.in/";
+	        request = RestAssured.given().log().all()
+	                .header("Content-Type", ContentType.JSON)
+	                .body("{ \"name\": \"leader\", \"job\": \"leader\" }");
+	    }
+
+	    @When("execute post api")
+	    public void executePostApi() {
+	        response = request.when().post("api/users");
+	    }
+
+	    @Then("validate the 201 response code")
+	    public void validate201ResponseCode() {
+	        response.then().log().all().assertThat().statusCode(201);
+	    }
+
+	    @Then("validate the response job is matching with expected result")
+	    public void validateResponseJob() {
+	        response.then().body("job", equalTo("leader"));
+	    }
+
+	    @Then("retrieve the ID values")
+	    public void retrieveIDValues() {
+	        id = response.jsonPath().getString("id");
+	    }
+
+	    @Then("print the value id value using log4j2")
+	    public void printIDUsingLog4j2() {
+	        logger.info("ID value: " + id);
+	    }
+
+	    @Then("print the log response in report")
+	    public void printLogResponseInReport() {
+	        ExtentCucumberAdapter.addTestStepLog("ID value: " + id);
+	    }
+
+	    @Given("create get pre request script")
+	    public void createGetPreRequestScript() {
+	        RestAssured.baseURI = "https://reqres.in/";
+	        request = RestAssured.given().log().all();
+	    }
+
+	    @When("pass the id in path parameter and execute get api")
+	    public void passIDInPathParameterAndExecuteGetApi() {
+	        response = request.when().get("api/users/" + id);
+	    }
+
+	    @Then("validate the 200 response code")
+	    public void validate200ResponseCode() {
+	        response.then().log().all().assertThat().statusCode(200);
+	    }
+
+	    @Given("create unknown get pre request script")
+	    public void createUnknownGetPreRequestScript() {
+	        RestAssured.baseURI = "https://reqres.in/";
+	        request = RestAssured.given().log().all();
+	    }
+
+	    @When("execute get api")
+	    public void executeGetApi() {
+	        response = request.when().get("api/unknown");
+	    }
+
+	    @Then("get the response data from the year 2000 color")
+	    public void getResponseDataFromYear2000Color() {
+	        response.then().body("data.find { it.year == 2000 }.color", notNullValue());
+	    }
+	}
+
+
+}

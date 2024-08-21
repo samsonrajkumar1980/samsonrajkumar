@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="postAPI" project="projectmaven" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="stepDef.postAPI" time="3.501">
+    <testcase name="AunknownRequest" classname="stepDef.postAPI" time="3.335"/>
+    <testcase name="BgetRequest" classname="stepDef.postAPI" time="0.104"/>
+    <testcase name="CpostRequest" classname="stepDef.postAPI" time="0.061"/>
+  </testsuite>
+</testrun>

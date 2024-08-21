@@ -1,0 +1,25 @@
+package stepDef;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import urls.urlss;
+
+
+public class postapi {
+	
+	RequestSpecification postrequest;
+	Response postresponse;
+	RequestSpecification getrequest;
+	Response getresponse;
+	RequestSpecification unknowngetrequest;
+	Response unknowngetresponse;
+	
+	
+	public void postRequest()
+	{
+
+	RestAssured.baseURI=urlss.baseUrl;
+	
+	}
+}

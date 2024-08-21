@@ -1,0 +1,114 @@
+	package stepDef;
+	
+	import org.junit.Test;
+	
+	import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+	import io.restassured.http.ContentType;
+	import io.restassured.response.Response;
+	import io.restassured.specification.RequestSpecification;
+	import urls.urlss;
+	import io.restassured.response.ResponseBody;
+	import static org.hamcrest.Matchers.*;
+	
+	import org.apache.logging.log4j.LogManager;
+	import org.apache.logging.log4j.Logger;
+	
+	public class postapi {
+		
+		
+		RequestSpecification postrequest;
+		Response postresponse;
+		RequestSpecification getrequest;
+		Response getresponse;
+		RequestSpecification unknowngetrequest;
+		Response unknowngetresponse;
+		private String ids; 
+		
+		private static final Logger logger = LogManager.getLogger(postapi.class);
+		
+		@Test
+		public void postRequest()
+		{
+			//creae post prerequest script 
+		RestAssured.baseURI=urlss.baseUrl.endpoint();
+		postrequest=RestAssured.given().log().all().header("Content-Type",ContentType.JSON).body(payload.postrequest.payloads());
+		
+		//execute post api
+		postresponse = postrequest.when().post(urlss.createpostapi.endpoint());
+		//validate the 201 response code
+		postresponse.then().log().all().assertThat().statusCode(201);
+		//validate the response id is matching with expected result 
+		postresponse.then().body("job", equalTo("leader"));
+		//retrieve the ID values
+		ids = postresponse.jsonPath().getString("id");
+	//	System.out.println("print the id value" +id);
+		//print the value id value using log4j2
+		logger.info("print the i value:"+ids);
+		// print the log response in report 
+//		ExtentCucumberAdapter.addTestStepLog("Print the id values"+ids);
+		
+		//create get pre request script 
+		getrequest=RestAssured.given().log().all().header("Content-Type",ContentType.JSON);
+
+	//	https://reqres.in/api/users?page=2
+				//pass the id in path parameter and execute get api
+		getresponse=getrequest.get(urlss.retrievegetapi.endpoint());
+		//validate the 200 response code 
+		postresponse.then().log().all().assertThat().statusCode(200);
+			//create unknown get pre request script
+	//	https://reqres.in/api/unknown
+			//execute get api
+			//validate the 200 response code 
+		//get the response data from the year 2000 color 
+		
+
+	
+	}
+		
+		
+		@Given("creae post prerequest script")
+		public void creae_post_prerequest_script() {
+			RestAssured.baseURI=urlss.baseUrl.endpoint();
+			postrequest=RestAssured.given().log().all().header("Content-Type",ContentType.JSON).body(payload.postrequest.payloads());
+
+		}
+		@When("execute post api")
+		public void execute_post_api() {
+			postresponse = postrequest.when().post(urlss.createpostapi.endpoint());
+		}
+		@Then("validate the {int} response code")
+		public void validate_the_response_code(Integer int1) {
+		    // Write code here that turns the phrase above into concrete actions
+			postresponse.then().log().all().assertThat().statusCode(201);
+		}
+		@Then("validate the response id is matching with expected result")
+		public void validate_the_response_id_is_matching_with_expected_result() {
+		    // Write code here that turns the phrase above into concrete actions
+			postresponse.then().body("job", equalTo("leader"));
+		}
+		@Then("retrieve the ID values")
+		public void retrieve_the_id_values() {
+		    // Write code here that turns the phrase above into concrete actions
+			ids = postresponse.jsonPath().getString("id");
+		}
+		@Then("print the value id value using log4j2")
+		public void print_the_value_id_value_using_log4j2() {
+		    // Write code here that turns the phrase above into concrete actions
+			logger.info("print the i value:"+ids);
+		}
+		@Then("print the log response in report")
+		public void print_the_log_response_in_report() {
+		    // Write code here that turns the phrase above into concrete actions
+			ExtentCucumberAdapter.addTestStepLog("Print the id values"+ids);
+		}
+
+
+
+	
+		
+		}

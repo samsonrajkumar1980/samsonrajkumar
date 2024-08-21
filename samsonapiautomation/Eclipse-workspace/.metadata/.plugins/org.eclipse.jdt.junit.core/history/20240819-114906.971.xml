@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="cucucmberRunner" project="projectmaven" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="runner.cucucmberRunner" time="0.134">
+    <testsuite name="create post and get method validate respone" time="0.134">
+      <testcase name="Create get method and validate the response" classname="create post and get method validate respone" time="0.133"/>
+      <testcase name="Create unknown get method and validate the response" classname="create post and get method validate respone" time="0.001"/>
+    </testsuite>
+  </testsuite>
+</testrun>
